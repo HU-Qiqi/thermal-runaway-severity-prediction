@@ -5,7 +5,7 @@ Using this formulation, supervised machine-learning models—particularly **CatB
 
 This approach enables **rapid, low-cost, and scalable assessment of thermal runaway risk**, providing a practical alternative to traditional ARC or FTRC-based experimental characterization.
 
----
+
 
 ## Repository structure
 
@@ -18,7 +18,7 @@ This approach enables **rapid, low-cost, and scalable assessment of thermal runa
 - `models` folder saves trained model and predictions and errors
 - `plot1.ipynb` and 'plot2.ipynb' creates plots of the data and results, as shown in the manuscript
 
----
+
 
 ## Installation
 
@@ -29,7 +29,7 @@ conda env create -f environment.yml
 conda activate thermal-runaway-severity
 ```
 
----
+
 
 ## Usage
 
@@ -39,18 +39,18 @@ Train the thermal runaway severity classification model:
 python 1.main.py
 ```
 
----
+
 
 The script will:
 
-- Preprocesses FTRC battery failure data
-- Constructs a Severity Index (SI)
-- Trains a CatBoost multiclass classifier (Low / Medium / High)
-- Evaluates performance with cross-validation and test split
-- Performs SHAP-based global and class-specific interpretability
-- Saves trained models, metrics, and publication-quality figures
+- Preprocess FTRC battery failure data
+- Construct a Severity Index (SI)
+- Train a CatBoost multiclass classifier (Low / Medium / High)
+- Evaluate performance with cross-validation and test split
+- Perform SHAP-based global and class-specific interpretability
+- Save trained models, metrics, and publication-quality figures
 
----
+
 
 ## Applications
 
@@ -64,13 +64,13 @@ This framework is intended for:
 
 By eliminating the dependence on calorimetry experiments, the method enables faster and more accessible thermal runaway risk evaluation.
 
----
+
 
 ## Citation
 
 Coming soon...
 
----
+
 
 ## Author
 
