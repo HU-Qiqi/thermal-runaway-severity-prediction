@@ -73,11 +73,8 @@ Coming soon...
 
 
 ## Author
-
-Coming soon...
-
----
-
+Qiqi Hu(胡齐齐)
+Institute of Materials Research, Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen 518055 Guangdong, PR China
 ## Acknowledgements
 
 This work makes use of the **Battery Failure Databank** provided by the  
