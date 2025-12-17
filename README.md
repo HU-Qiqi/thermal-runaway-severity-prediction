@@ -1,29 +1,84 @@
-# classifier-for-severity-of-thermal-runaway
-Leveraging the '[Battery Failure Databank](https://www.nrel.gov/transportation/battery-failure.html)' published by NREL and NASA, uses machine-learning to predict fractional heat output during thermal runaway from cell metadata and measured ejected and remaining cell mass after a thermal runaway event. Fractional heat output, i.e., heat output from the cell body, from ejecta released out of the positive tab, and from ejecta released out of the negative tab, was measured using a fractional thermal runaway calorimeter. Cell metadata and ejected/remaining cell mass can be measured using substantially cheaper methods, enabling cheaper and faster estimation of thermal runaway risk.
+# thermal-runaway-severity-prediction
+
+Leveraging the [Battery Failure Databank](https://www.nrel.gov/transportation/battery-failure.html) published by NREL and NASA, this repository provides a machine-learning framework for **predicting the severity of lithium-ion battery thermal runaway events using metadata only**, without requiring calorimetry or mass-ejection measurements as model inputs. A physics-informed **Severity Index (SI)** is constructed by combining normalized heat release and mass ejection metrics, and batteries are categorized into **Low / Medium / High severity levels**.  
+Using this formulation, supervised machine-learning models—particularly **CatBoost**—are trained to predict thermal runaway severity prior to event occurrence.
+
+This approach enables **rapid, low-cost, and scalable assessment of thermal runaway risk**, providing a practical alternative to traditional ARC or FTRC-based experimental characterization.
+
+---
 
 ## Repository structure
-- 'data' folder contains a copy of the battery failure databank (version 2)
-- 'src' folder contains classes and methods for data processing, model definitions and training, and analysis tools for plotting results
-- `1.main.py` trains models and saves resulting predictions and errors into json files
-- 'Plots.ipynb' creates plots of the data and results, as shown in the manuscript
 
-Other Jupyter notebooks contain testing on other cell types in the databank, SHAP feature analysis, and testing/training of models on data with varied SOC before triggering thermal runaway.
+- `data` folder contains a copy of the battery failure databank (version 2), and the processed dataframe in this research
+- `src` folder contains classes and methods for data processing, model definitions and training, and analysis tools for plotting results
+- `1.main.py` trains models and conducts SHAP interpretability
+- `2.Benchmarks.py` compares several benchmarking classification algorithms for TR severity
+- `3.Catboost_TR_severity_evaluation.py` implements catBoost classification and error analysis for TR Severity
+- `Sensitivity Analysis.ipynb` compares impact of different severity quantile schemes on catBoost classification
+- `models` folder saves trained model and predictions and errors
+- `plot1.ipynb` and 'plot2.ipynb' creates plots of the data and results, as shown in the manuscript
+
+---
 
 ## Installation
-Setup a virtual environment using conda with the 'environment.yml' file.
 
-## Battery Failure Databank 
-For this work, 139 measurements from the [Battery Failure Databank](https://www.nrel.gov/transportation/battery-failure.html) are utilized, predicting heat output from ejected mass data. Overall, these two measurements are storngly correlated, however there is substantial variability in the behavior observed across different cell types, for example, the KULR 18650-K330 cells show a clear relationship, while the LG 18650-MJ1 cells have no correlation between heat ouput and ejected mass.
+It is recommended to use **conda** to reproduce the environment.
 
-<img src="imgs/fig_data_linreg.jpg" alt="battery_databank" width="50%" height="auto">
+```bash
+conda env create -f environment.yml
+conda activate thermal-runaway-severity
+```
 
-The distributions of heat output from each cell type are predicted using a machine-learning model. 'Zero-shot' predictions, made using zero heat output measurements for the cell type being tested, are successful for some cells. 'i-shot' predictions, where some number of heat output measurements 'i' are used to calibrate the model to the new cell type, show that the entire distribution of heat outputs (heat output from up to 30 cells, for this data set) can be predicted accurately with just 1-5 heat output measurements by using these few measurements to calibrate a model that predicts heat output from ejected mass.
+---
 
-<img src="imgs/fig_results_violins.jpg" alt="heat_outputs" width="50%" height="auto">
+## Usage
 
-## Authors
-Karina Masalkovaite, Paul Gasper, Donal Finegan
+Train the thermal runaway severity classification model:
 
-National Renewable Energy Lab, Denver, CO, USA
+```bash
+python 1.main.py
+```
 
-Contact: Paul.Gasper@nrel.gov, Donal.Finegan@nrel.gov
+---
+
+The script will:
+
+- Preprocesses FTRC battery failure data
+- Constructs a Severity Index (SI)
+- Trains a CatBoost multiclass classifier (Low / Medium / High)
+- Evaluates performance with cross-validation and test split
+- Performs SHAP-based global and class-specific interpretability
+- Saves trained models, metrics, and publication-quality figures
+
+---
+
+## Applications
+
+This framework is intended for:
+
+- Battery safety screening  
+- Early-stage cell risk assessment  
+- Energy storage system hazard analysis  
+- Data-driven battery safety research  
+- Engineering-level comparison of battery designs  
+
+By eliminating the dependence on calorimetry experiments, the method enables faster and more accessible thermal runaway risk evaluation.
+
+---
+
+## Citation
+
+Coming soon...
+
+---
+
+## Author
+
+Coming soon...
+
+---
+
+## Acknowledgements
+
+This work makes use of the **Battery Failure Databank** provided by the  
+**National Renewable Energy Laboratory (NREL)** and **NASA**.
