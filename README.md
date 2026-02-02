@@ -1,24 +1,98 @@
 # thermal-runaway-severity-prediction
 
-Leveraging the [Battery Failure Databank](https://www.nrel.gov/transportation/battery-failure.html) published by NREL and NASA, this repository provides a machine-learning framework for **predicting the severity of lithium-ion battery thermal runaway events using metadata only**, without requiring calorimetry or mass-ejection measurements as model inputs. A physics-informed **Severity Index (SI)** is constructed by combining normalized heat release and mass ejection metrics, and batteries are categorized into **Low / Medium / High severity levels**.  
-Using this formulation, supervised machine-learning models—particularly **CatBoost**—are trained to predict thermal runaway severity prior to event occurrence.
+This repository presents a **physics-informed machine learning framework for predicting the
+severity of lithium-ion battery thermal runaway (TR) events using metadata only**, without
+requiring calorimetry or mass-ejection measurements as model inputs.
 
-This approach enables **rapid, low-cost, and scalable assessment of thermal runaway risk**, providing a practical alternative to traditional ARC or FTRC-based experimental characterization.
-
-
-
-## Repository structure
-
-- `data` folder contains a copy of the battery failure databank (version 2), and the processed dataframe in this research
-- `src` folder contains classes and methods for data processing, model definitions and training, and analysis tools for plotting results
-- `1.main.py` trains models and conducts SHAP interpretability
-- `2.Benchmarks.py` compares several benchmarking classification algorithms for TR severity
-- `3.Catboost_TR_severity_evaluation.py` implements catBoost classification and error analysis for TR Severity
-- `Sensitivity Analysis.ipynb` compares impact of different severity quantile schemes on catBoost classification
-- `models` folder saves trained model and predictions and errors
-- `plot1.ipynb` and 'plot2.ipynb' creates plots of the data and results, as shown in the manuscript
+The framework is developed based on the **Battery Failure Databank (v2)** published by the **National Renewable Energy Laboratory (NREL)** and **NASA**, and enables rapid, low-cost, and
+scalable assessment of thermal runaway risk prior to event occurrence.
 
 
+## Problem & Contribution
+
+Thermal runaway (TR) severity is a critical yet under-characterized dimension of battery safety.
+Existing experimental characterization methods (e.g., ARC, FTRC) are costly, time-consuming,
+and difficult to scale for early-stage battery screening or large datasets.
+
+**This work makes three key contributions:**
+
+1. Proposes a **physics-informed Severity Index (SI)** that integrates normalized heat release
+   and mass ejection to quantify the severity of TR events.
+2. Develops a **metadata-only machine learning framework** to predict TR severity *prior to event
+   occurrence*, eliminating the dependence on calorimetry or post-mortem measurements.
+3. Demonstrates **accurate and interpretable severity classification** using supervised models
+   (particularly **CatBoost**) trained on the **NREL–NASA Battery Failure Databank**.
+
+
+## Severity Index (SI)
+
+A physics-informed **Severity Index (SI)** is constructed by combining normalized
+heat release and mass ejection metrics reported in the Battery Failure Databank.
+The SI serves as a continuous measure of thermal runaway severity, which is further discretized
+into **Low / Medium / High** severity levels for supervised classification.
+
+This formulation enables:
+
+- Consistent comparison across heterogeneous battery failure events  
+- Severity-aware learning beyond binary TR detection  
+- Physics-guided supervision for machine learning models  
+
+
+## Method Overview
+
+Using the constructed Severity Index, supervised machine-learning models are trained to predict
+TR severity based solely on **pre-failure metadata**, including cell specifications and test conditions.
+
+Key features of the framework include:
+
+- Metadata-only inputs (no calorimetry or mass-ejection data required)
+- Supervised multiclass classification (Low / Medium / High severity)
+- Model interpretability via **SHAP analysis**
+- Benchmark comparison across multiple classifiers
+
+Among the evaluated models, **CatBoost** demonstrates strong performance and robustness for
+thermal runaway severity prediction.
+
+
+## Repository Structure
+
+```text
+├── data/
+│   ├── BatteryFailureDatabankV2.xlsx
+│   └── dataframe_processed.xlsx
+│
+├── imgs/
+│   images output by programs
+│
+├── models/
+│   Saved trained models, predictions, and evaluation metrics
+│
+├── src/
+│   ├── analysis.py
+│   ├── data.py
+│   └── models.py
+│  
+│    
+│
+├── 1.main.py
+│   End-to-end pipeline: preprocessing, SI construction, model training, and SHAP analysis
+│
+├── 2.Benchmarks.py
+│   Baseline classification models for TR severity comparison
+│
+├── 3.Catboost_TR_severity_evaluation.py
+│   Detailed CatBoost training, error analysis, and class-wise evaluation
+│
+├── Sensitivity Analysis.ipynb
+│   Impact of severity quantile definitions on classification robustness
+│
+├── plot1.ipynb
+├── plot2.ipynb
+│   Visualization of data distributions
+│
+└── environment.yml
+
+```
 
 ## Installation
 
@@ -39,8 +113,6 @@ Train the thermal runaway severity classification model:
 python 1.main.py
 ```
 
-
-
 The script will:
 
 - Preprocess FTRC battery failure data
@@ -54,29 +126,37 @@ The script will:
 
 ## Applications
 
-This framework is intended for:
+This framework enables:
 
-- Battery safety screening  
-- Early-stage cell risk assessment  
-- Energy storage system hazard analysis  
-- Data-driven battery safety research  
-- Engineering-level comparison of battery designs  
+- Early-stage battery safety screening
+- Rapid assessment of thermal runaway risk without calorimetry
+- Data-driven comparison of battery designs and chemistries
+- Scalable hazard analysis for energy storage systems
+- Research on severity-aware battery failure modeling
 
-By eliminating the dependence on calorimetry experiments, the method enables faster and more accessible thermal runaway risk evaluation.
+By eliminating the dependence on calorimetry experiments, the method provides a practical
+alternative to traditional ARC or FTRC-based experimental characterization.
 
 
 
 ## Citation
-
-Coming soon...
-
-
+Manuscript in preparation.
+A preprint will be released upon submission.
 
 ## Author
 Qiqi Hu(胡齐齐)
 
-Institute of Materials Research, Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen 518055 Guangdong, PR China
+Institute of Materials Research
+
+Tsinghua Shenzhen International Graduate School
+
+Tsinghua University
+
+Shenzhen 518055 Guangdong
+
+PR China
+
 ## Acknowledgements
 
-This work makes use of the **Battery Failure Databank** provided by the  
+This work makes use of the **[Battery Failure Databank](https://www.nrel.gov/transportation/battery-failure.html)** provided by the  
 **National Renewable Energy Laboratory (NREL)** and **NASA**.
