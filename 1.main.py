@@ -356,7 +356,7 @@ fig, ax = plt.subplots(figsize=(10, 8))
 ax.barh(
     range(len(sorted_importance)),
     sorted_importance[::-1],
-    color="#4C72B0",
+    color="#4C72B0", 
     edgecolor="black",
     linewidth=1.0,
 )
@@ -483,7 +483,7 @@ fig, ax = plt.subplots(figsize=(7, 5))
 cls_metrics.plot(
     kind="bar",
     ax=ax,
-    color=["#4C72B0", "#CCB974", "#55A868"],
+    color=[ "#4C72B0","#8172B3","#55A868"],
     edgecolor="black",
     linewidth=1.0,
 )

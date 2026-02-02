@@ -184,7 +184,10 @@ plt.rcParams.update({
     "axes.linewidth": 1.0,
 })
 
-risk_colors = ["#55A868", "#CCB974", "#C44E52"]  # Low, Medium, High
+risk_colors = ["#4C9F70",      # muted green (safe, stable)
+               "#D4B483",   # desaturated sand / khaki
+             "#C94A4A"     # muted red (hazard, not aggressive)
+]
 
 # =========================
 # 8. Absolute Count Plot
@@ -239,7 +242,7 @@ count_table_norm.plot(
 ax.set_xlabel("Predicted severity")
 ax.set_ylabel("Proportion within predicted class")
 ax.set_xticklabels(severity_order, rotation=0)
-ax.set_ylim(0, 1.0)
+ax.set_ylim(0, 1.1)
 
 ax.legend(
     loc="lower center",

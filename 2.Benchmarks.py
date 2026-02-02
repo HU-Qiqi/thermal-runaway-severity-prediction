@@ -219,7 +219,7 @@ sns.barplot(
     x="Model",
     y="Score",
     hue="Metric",
-    palette=["#4C72B0", "#CCB974", "#55A868"],
+    palette=[ "#4C72B0","#8172B3","#55A868"],
     edgecolor="black",
     linewidth=1.0,
     ax=ax,
