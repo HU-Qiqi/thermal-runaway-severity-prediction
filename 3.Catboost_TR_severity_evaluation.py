@@ -63,7 +63,7 @@ CATEGORICAL_COLS = [
     "Manufacturer",
     "Geometry",
     "Trigger-Mechanism",
-    "BV Actuated",
+    #"BV Actuated",
 ]
 
 for col in CATEGORICAL_COLS:

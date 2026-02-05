@@ -80,7 +80,7 @@ CATEGORICAL_COLS = [
     "Manufacturer",
     "Geometry",
     "Trigger-Mechanism",
-    "BV Actuated",
+    #"BV Actuated",
 ]
 
 NUMERIC_COLS = [c for c in X.columns if c not in CATEGORICAL_COLS]

@@ -64,7 +64,7 @@ FEATURES_METADATA = [
     "Geometry",
     "Cell-Capacity-Ah",
     "Trigger-Mechanism",
-    "BV Actuated",
+    #"BV Actuated",
 ]
 
 FEATURES_EJECTED_MASS = [
@@ -154,7 +154,7 @@ CATEGORICAL_COLS = [
     "Manufacturer",
     "Geometry",
     "Trigger-Mechanism",
-    "BV Actuated",
+    #"BV Actuated",
 ]
 
 for col in CATEGORICAL_COLS:

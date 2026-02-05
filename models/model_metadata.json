@@ -13,7 +13,6 @@
         "Cell-Description",
         "Manufacturer",
         "Geometry",
-        "Trigger-Mechanism",
-        "BV Actuated"
+        "Trigger-Mechanism"
     ]
 }
