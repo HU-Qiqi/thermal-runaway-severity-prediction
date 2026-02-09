@@ -1,0 +1,19 @@
+{
+    "class_order": [
+        "High",
+        "Low",
+        "Medium"
+    ],
+    "class_weights": [
+        2.2612612612612613,
+        2.2017543859649122,
+        0.4753787878787879
+    ],
+    "categorical_features": [
+        "Cell-Description",
+        "Manufacturer",
+        "Geometry",
+        "Trigger-Mechanism",
+        "Bottom-Vent-Yes-No"
+    ]
+}
