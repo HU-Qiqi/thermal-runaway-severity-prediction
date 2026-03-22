@@ -86,8 +86,7 @@ thermal runaway severity prediction.
 ├── Sensitivity Analysis.ipynb
 │   Impact of severity quantile definitions on classification robustness
 │
-├── plot1.ipynb
-├── plot2.ipynb
+├── plot.ipynb
 │   Visualization of data distributions
 │
 └── environment.yml
